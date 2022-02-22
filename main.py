@@ -1,6 +1,8 @@
 import asyncio
-from lib.runner import Runner
+from lib.file_runner import FileRunner
 
+
+# TODO move this to a config file
 files_dir = "~/sample-stl-data/"
 
 
@@ -9,11 +11,15 @@ async def test():
 
 
 def main():
-    runner = Runner()
+    runner = FileRunner(files_dir)
     loop = asyncio.new_event_loop()
 
     loop.create_task(runner.start())
-    loop.run_forever()
+
+    try:
+        loop.run_forever()
+    except Exception:
+        pass
 
 
 main()
